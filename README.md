@@ -2,6 +2,8 @@
 
 This is a blog application built with Next.js App Router, featuring a dynamic blog post system, search functionality, and error handling. The project integrates with a mock API (JSONPlaceholder) to fetch and display blog posts.
 
+#### App link: https://frontend-test-task-psi.vercel.app
+
 ---
 
 ### Table of Contents
