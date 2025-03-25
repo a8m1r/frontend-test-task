@@ -70,7 +70,7 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
         </div>
       )}
 
-      {posts.length === 0 && searchQuery.length > 1 ? (
+      {posts.length === 0 && searchQuery.length > 0 ? (
         <p>No posts found</p>
       ) : null}
 
