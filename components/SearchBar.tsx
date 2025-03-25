@@ -3,20 +3,21 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import useStore from '@/lib/store'
+import useDebounce from '@/hooks/useDebounce'
 
 export default function SearchBar() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { setSearchQuery } = useStore()
   const [input, setInput] = useState(() => searchParams.get('q') || '')
+  const debouncedInput = useDebounce(input, 200)
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSearchQuery(input)
-      router.push(input ? `/?q=${encodeURIComponent(input)}` : '/')
-    }, 200)
-    return () => clearTimeout(timeout)
-  }, [input, setSearchQuery, router])
+    setSearchQuery(debouncedInput)
+    router.push(
+      debouncedInput ? `/?q=${encodeURIComponent(debouncedInput)}` : '/',
+    )
+  }, [debouncedInput, setSearchQuery, router])
 
   return (
     <input
